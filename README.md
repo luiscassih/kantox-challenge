@@ -57,6 +57,12 @@ You will need the following things properly installed on your computer.
 * `cd fe-tech-test`
 * `npm install`
 
+With this, you will have an empty app with two routes already implemented `index` and `product`.
+[TailwindCSS](https://tailwindcss.com/) is installed so you can make use of it.
+A simple backend is available using Mirage, you can modifiy it and adapt it for your needs.
+There is no need to install anything else to make the app work, of course you can add any
+other library you want to use. 
+
 ## Running / Development
 
 * `ember serve`
