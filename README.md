@@ -38,6 +38,7 @@ Our check-out can scan items in any order, and because the C*Os change their min
   - The total price of the basket after discounts applied
 - Some navigation implementation between the routes.
 - A service or similar that is responsible of calculating and persisting total amount.
+- The wireframes to create the components and elements used on the app are specified in this [Figma](https://www.figma.com/file/xhMkdALy0WxUN7g4lIw3vn/FE-Technical-Test_Kantox?type=design&node-id=86%3A219&mode=design&t=g3K3FPssMx8axuHL-1) file.
 
 ### Bonus point
 - Implement tests (integration or acceptance)
