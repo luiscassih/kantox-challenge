@@ -1,0 +1,10 @@
+<button
+  type="button"
+  class="
+    {{if (eq @type 'quiet') 'bg-violet-50 hover:bg-violet-200 active:bg-violet-300 text-violet-700'}}
+    {{if (eq @type 'primary') 'bg-violet-700 hover:bg-violet-800 active:bg-violet-500 text-white'}}
+  shadow-sm font-bold p-2 rounded-lg"
+  {{on "click" @onClick}}
+>
+  {{yield}}
+</button>
