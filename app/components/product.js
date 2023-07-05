@@ -8,7 +8,11 @@ export default class ProductComponent extends Component {
   sections = ['Groceries', 'Wine', 'Clothes', 'FX'];
 
   @tracked activeSection = 0;
-  // @tracked quantity = 0;
+
+  @action
+  removeFromCart(product) {
+    this.cart.remove(product);
+  }
 
   @action
   addToCart(product) {

@@ -5,4 +5,5 @@ export default class ProductModel extends Model {
   @attr('number') price;
   @attr('string') code;
   @attr('string') image;
+  @attr('number') quantity;
 }

@@ -12,6 +12,7 @@ export default function () {
             price: 3.11,
             code: 'GR1',
             image: 'green_tea.png',
+            quantity: 0,
           },
         },
         {
@@ -22,6 +23,7 @@ export default function () {
             price: 5,
             code: 'SR1',
             image: 'strawberries.png',
+            quantity: 0,
           },
         },
         {
@@ -32,6 +34,7 @@ export default function () {
             price: 11.23,
             code: 'CF1',
             image: 'coffee.png',
+            quantity: 0,
           },
         },
       ],

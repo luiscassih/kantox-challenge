@@ -11,5 +11,15 @@ export default class CartController extends Controller {
   }
 
   @action
+  removeFromCart(product) {
+    this.cart.remove(product);
+  }
+
+  @action
+  getProductTotal(product) {
+    return (product.price * product.quantity).toFixed(2);
+  }
+
+  @action
   checkout() {}
 }
