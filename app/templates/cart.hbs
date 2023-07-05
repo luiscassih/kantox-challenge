@@ -12,7 +12,7 @@
       </div>
     </LinkTo>
     <h1 class="mt-16 text-4xl leading-10 font-medium">Shopping Cart</h1>
-    <h2 class="text-xl leading-7 mt-2 mb-8">You have 4 items in your cart</h2>
+    <h2 class="text-xl leading-7 mt-2 mb-8">You have {{this.cart.products.length}} items in your cart</h2>
     <div class="flex gap-x-12">
       <ul class="flex flex-col">
         <li class="flex shadow-sm border border-gray-100 rounded-lg p-4 w-[720px]">
@@ -24,7 +24,7 @@
             </div>
             <div class="flex mt-[9px]"><Token>discount</Token></div>
             <div class="flex-1 flex items-end">
-              <QuantitySelector />
+              <QuantitySelector @quantity={{this.cart.products.length}}/>
             </div>
           </div>
         </li>

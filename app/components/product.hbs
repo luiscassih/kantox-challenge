@@ -6,11 +6,16 @@
     <div class="flex justify-between items-center">
       <span class="text-xl">£{{@product.price}}</span>
       {{!-- <p class="my-2">In Cart: {{this.quantity}}</p> --}}
-      <p class="my-2">In Cart: {{this.quantity}}</p>
-      <Button
-        @type="quiet"
-        @onClick={{this.addToCart}}
-      >Add to cart</Button>
+      <p class="my-2">In Cart: {{this.cart.products.length}}</p>
+
+      {{#if (gt this.cart.products.length 0)}}
+        <QuantitySelector @quantity={{this.cart.products.length}} />
+      {{else}}
+        <Button
+          @type="quiet"
+          @onClick={{(fn this.addToCart @product)}}
+        >Add to cart</Button>
+      {{/if}}
     </div>
   </div>
 </div>
