@@ -1,4 +1,28 @@
 {{page-title "Products"}}
-{{#each this.model as |product|}}
-<Product @product={{product}} />
-{{/each}}
+<div class="flex flex-col items-center">
+  <div class="">
+    <nav class="mt-12 mb-16">
+      <ul class="flex [&>li]:p-2 gap-[1.9375rem] ">
+        {{#each this.sections as |section idx|}}
+          <li
+            class="hover:border-b hover:border-violet-700 hover:mb-[-1px] hover:cursor-pointer
+              {{if (eq this.activeSection idx)
+                'border-violet-500 border-b mb-[-1px] font-bold text-violet-700'
+              }}"
+          >
+            <button
+              type="button"
+              {{on "click" (fn this.goToSection idx)}}
+            >{{section}}</button>
+          </li>
+        {{/each}}
+      </ul>
+    </nav>
+    <h1 class="text-4xl leading-10 font-medium">{{get this.sections this.activeSection}}</h1>
+    <ul class="flex gap-14">
+      {{#each this.model as |product|}}
+      <Product @product={{product}} />
+      {{/each}}
+    </ul>
+  </div>
+</div>

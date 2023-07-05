@@ -1,8 +1,8 @@
-import Component from '@glimmer/component';
+import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class ProductComponent extends Component {
+export default class ProductsController extends Controller {
   sections = [
     "Groceries",
     "Wine",
@@ -11,10 +11,9 @@ export default class ProductComponent extends Component {
   ];
 
   @tracked activeSection = 0;
-  @tracked quantity = 0;
 
   @action
-  addToCart() {
-    this.quantity++;
+  goToSection(section) {
+    this.activeSection = section;
   }
 }
