@@ -19,6 +19,7 @@
       </ul>
     </nav>
     <h1 class="text-4xl leading-10 font-medium">{{get this.sections this.activeSection}}</h1>
+    <h2 class="text-xl leading-7 mt-2 mb-8">Special FX offers only the finest organic produce.</h2>
     <ul class="flex gap-14">
       {{#each this.model as |product|}}
       <Product @product={{product}} />
