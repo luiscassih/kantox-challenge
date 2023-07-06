@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
 
-export default class CartController extends Controller {
+export default class CheckoutController extends Controller {
   @service('cart') cart;
 
   @action

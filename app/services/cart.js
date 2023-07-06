@@ -32,6 +32,8 @@ export default class CartService extends Service {
       this.price = 0;
     }
     this.quantity = this.products.reduce((total, product) => product.quantity + total, 0);
+    this.products.forEach(product => {
+    });
   }
 
 
