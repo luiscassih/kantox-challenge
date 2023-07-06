@@ -41,6 +41,7 @@ export default class CartService extends Service {
       product => product.quantity > 1,
       product => {
         // green tea -> add 1 -> 1 more
+        // discount half prices when adding in pairs
         return Math.floor(product.quantity / 2) * product.price
     })
     .addPromotion(
@@ -49,6 +50,7 @@ export default class CartService extends Service {
       product => product.quantity > 2,
       product => {
         // strawberries -> add 3 -> each drop to fixed 4.50
+        // as we charge 4.50 we discount the difference
         return (product.price - 4.50) * product.quantity;
     })
     .addPromotion(
@@ -57,7 +59,7 @@ export default class CartService extends Service {
       product => product.quantity > 2,
       product => {
         // coffee -> add 3 -> each goes 2/3 of price
-        return ((product.price * product.quantity) * 2/3);
+        return ((product.price * product.quantity) * 1/3);
     });
 
   add(product) {
@@ -90,9 +92,10 @@ export default class CartService extends Service {
     let discount = 0;
     this.products.forEach((product) => {
       quantity += product.quantity;
-      totalPrice += product.price * product.quantity;
+      let price = (product.price * product.quantity);
+      totalPrice += price;
       discount += this.promotions.getDiscount(product);
-      subtotal += totalPrice;
+      subtotal += price;
     });
     this.quantity = quantity;
     this.discount = discount;
