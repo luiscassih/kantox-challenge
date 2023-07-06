@@ -1,5 +1,11 @@
 # Frontend Tech Test
 
+
+<div style="display:flex; flex-direction:column; align-items: center;">
+	<img style="margin-bottom: 10px; width: 500px" src="./readme_images/kantox_products.png">
+	<img style="margin-bottom: 10px; width: 500px" src="./readme_images/kantox_checkout.png">
+</div>
+
 ## Objectives
 - Evaluation of programming style
 - Evaluation of language knowledge
