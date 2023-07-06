@@ -31,7 +31,7 @@ export default class CartService extends Service {
   @tracked quantity = 0;
   @tracked totalPrice = 0;
   @tracked subtotal = 0;
-  @tracked shipping = 0.5; // example
+  @tracked shipping = 0; // set here if you want
   @tracked discount = 0;
 
   promotions = new Promotions()
