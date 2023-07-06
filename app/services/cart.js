@@ -2,6 +2,30 @@ import { A } from '@ember/array';
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
+class Promotions {
+  promotions = []
+
+  addPromotion(code, label, condition, action) {
+    this.promotions.push({code, label, condition, action});
+    return this;
+  }
+
+  getDiscount(product) {
+    let promotion = this.promotions.find(promotion => promotion.code === product.code && promotion.condition(product));
+    if (promotion) {
+      return promotion.action(product);
+    }
+    return 0;
+  }
+
+  getLabel(product) {
+    let promotion = this.promotions.find(promotion => promotion.code === product.code);
+    if (promotion) {
+      return promotion.label;
+    }
+  }
+}
+
 export default class CartService extends Service {
   products = A([]);
   @tracked quantity = 0;
@@ -9,6 +33,32 @@ export default class CartService extends Service {
   @tracked subtotal = 0;
   @tracked shipping = 0.5; // example
   @tracked discount = 0;
+
+  promotions = new Promotions()
+    .addPromotion(
+      'GR1',
+      '2 for 1',
+      product => product.quantity > 1,
+      product => {
+        // green tea -> add 1 -> 1 more
+        return Math.floor(product.quantity / 2) * product.price
+    })
+    .addPromotion(
+      'SR1',
+      '3 for £13.50',
+      product => product.quantity > 2,
+      product => {
+        // strawberries -> add 3 -> each drop to fixed 4.50
+        return (product.price - 4.50) * product.quantity;
+    })
+    .addPromotion(
+      'CF1',
+      'Multi-buy discount',
+      product => product.quantity > 2,
+      product => {
+        // coffee -> add 3 -> each goes 2/3 of price
+        return ((product.price * product.quantity) * 2/3);
+    });
 
   add(product) {
     const existingProduct = this.products.find((p) => p.code === product.code);
@@ -37,15 +87,17 @@ export default class CartService extends Service {
     let quantity = 0;
     let totalPrice = 0;
     let subtotal = 0;
+    let discount = 0;
     this.products.forEach((product) => {
       quantity += product.quantity;
       totalPrice += product.price * product.quantity;
+      discount += this.promotions.getDiscount(product);
       subtotal += totalPrice;
-      //apply promotions here to totalPrice
     });
     this.quantity = quantity;
+    this.discount = discount;
     this.subtotal = subtotal.toFixed(2);
-    this.totalPrice = (totalPrice + this.shipping - this.discount).toFixed(2);
+    this.totalPrice = (totalPrice + this.shipping - discount).toFixed(2);
   }
 
   empty() {

@@ -18,4 +18,9 @@ export default class ProductComponent extends Component {
   addToCart(product) {
     this.cart.add(product);
   }
+
+  @action
+  getPromotionLabel(product) {
+    return this.cart.promotions.getLabel(product);
+  }
 }

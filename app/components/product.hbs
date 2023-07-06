@@ -1,6 +1,6 @@
 <div class="shadow-sm border border-gray-100 rounded-lg relative">
   <img class="rounded-t-lg rounded-b-none w-[352px] h-[260px]" src="/assets/images/{{@product.image}}" alt="{{@product.name}}" />
-  <Token @class="absolute top-4 right-4">discount</Token>
+  <Token @class="absolute top-4 right-4">{{this.getPromotionLabel @product}}</Token>
   <div class="p-4 flex flex-col">
     <h1 class="font-bold text-xl">{{@product.name}}</h1>
     <div class="flex justify-between items-center">

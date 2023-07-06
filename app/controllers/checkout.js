@@ -21,5 +21,10 @@ export default class CheckoutController extends Controller {
   }
 
   @action
+  getPromotionLabel(product) {
+    return this.cart.promotions.getLabel(product);
+  }
+
+  @action
   checkout() {}
 }

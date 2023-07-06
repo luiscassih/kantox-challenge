@@ -24,7 +24,7 @@
                 <h1 class="text-xl font-bold">{{product.name}}</h1>
                 <span class="text-xl">£{{this.getProductTotal product}}</span>
               </div>
-              <div class="flex mt-[9px]"><Token>discount</Token></div>
+              <div class="flex mt-[9px]"><Token>{{this.getPromotionLabel product}}</Token></div>
               <div class="flex-1 flex items-end">
                 <QuantitySelector
                   @minusClick={{(fn this.removeFromCart product)}}
