@@ -5,7 +5,10 @@ import { tracked } from '@glimmer/tracking';
 export default class CartService extends Service {
   products = A([]);
   @tracked quantity = 0;
-  @tracked totalPrice = 19.34;
+  @tracked totalPrice = 0;
+  @tracked subtotal = 0;
+  @tracked shipping = 0.5; // example
+  @tracked discount = 0;
 
   add(product) {
     const existingProduct = this.products.find((p) => p.code === product.code);
@@ -31,11 +34,19 @@ export default class CartService extends Service {
       this.quantity = 0;
       this.price = 0;
     }
-    this.quantity = this.products.reduce((total, product) => product.quantity + total, 0);
-    this.products.forEach(product => {
+    let quantity = 0;
+    let totalPrice = 0;
+    let subtotal = 0;
+    this.products.forEach((product) => {
+      quantity += product.quantity;
+      totalPrice += product.price * product.quantity;
+      subtotal += totalPrice;
+      //apply promotions here to totalPrice
     });
+    this.quantity = quantity;
+    this.subtotal = subtotal.toFixed(2);
+    this.totalPrice = (totalPrice + this.shipping).toFixed(2);
   }
-
 
   empty() {
     this.products.clear();

@@ -4,7 +4,7 @@
   <div class="p-4 flex flex-col">
     <h1 class="font-bold text-xl">{{@product.name}}</h1>
     <div class="flex justify-between items-center">
-      <span class="text-xl">£{{@product.price}}</span>
+      <span class="text-xl">£{{to-fixed @product.price}}</span>
       {{#if (gt @product.quantity 0)}}
         <QuantitySelector
           @quantity={{@product.quantity}}
