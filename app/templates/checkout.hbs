@@ -15,7 +15,7 @@
     <h2 class="text-xl leading-7 mt-2 mb-8">You have {{this.cart.quantity}} items in your cart</h2>
     {{#if (gt this.cart.products.length 0)}}
     <div class="flex gap-x-12">
-      <ul class="flex flex-col">
+      <ul class="flex flex-col gap-y-6">
         {{#each this.cart.products as |product|}}
           <li class="flex shadow-sm border border-gray-100 rounded-lg p-4 w-[720px]">
             <div><img class="h-[152px] w-[208px] rounded-lg" alt="Strawberries" src="/assets/images/{{product.image}}" /></div>
@@ -36,36 +36,40 @@
           </li>
         {{/each}}
       </ul>
-      <div class="rounded-lg shadow-sm border border-gray-100 w-[404px] flex flex-col">
-        <h1 class="bg-gray-100 rounded-t-lg font-bold text-xl px-8 py-4">
-          Summary
-        </h1>
-        <ul class="flex flex-col p-8">
-          <li class="flex justify-between">
-            <div>Subtotal</div>
-            <div class="font-bold">£{{this.cart.subtotal}}</div>
-          </li>
-          <li class="flex justify-between">
-            <div>Shipping Cost</div>
-            <div class="font-bold">£{{to-fixed this.cart.shipping}}</div>
-          </li>
-          <li class="flex justify-between">
-            <div>Discount</div>
-            <div class="font-bold">-£{{this.cart.discount}}</div>
-          </li>
-        </ul>
-        <ul class="flex flex-col p-8 border-t">
-          <li class="flex justify-between">
-            <div>Total Payable</div>
-            <div class="font-bold">£{{this.cart.totalPrice}}</div>
-          </li>
-          <li class="flex self-end pt-8">
-            <Button
-              @type="primary"
-              @onClick={{this.checkout}}
-            >Go to Checkout</Button>
-          </li>
-        </ul>
+      <div>
+        <div class="rounded-lg shadow-sm border border-gray-100 w-[404px] flex flex-col">
+          <h1 class="bg-gray-100 rounded-t-lg font-bold text-xl px-8 py-4">
+            Summary
+          </h1>
+          <ul class="flex flex-col p-8 gap-y-4">
+            <li class="flex justify-between">
+              <div>Subtotal</div>
+              <div class="font-bold">£{{this.cart.subtotal}}</div>
+            </li>
+            <li class="flex justify-between">
+              <div>Shipping Cost</div>
+              <div class="font-bold">£{{to-fixed this.cart.shipping}}</div>
+            </li>
+            {{#if (gt this.cart.discount 0)}}
+            <li class="flex justify-between">
+              <div>Discount</div>
+              <div class="font-bold">-£{{to-fixed this.cart.discount}}</div>
+            </li>
+            {{/if}}
+          </ul>
+          <ul class="flex flex-col p-8 border-t">
+            <li class="flex justify-between">
+              <div>Total Payable</div>
+              <div class="font-bold">£{{this.cart.totalPrice}}</div>
+            </li>
+            <li class="flex self-end pt-8">
+              <Button
+                @type="primary"
+                @onClick={{this.checkout}}
+              >Go to Checkout</Button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     {{/if}}

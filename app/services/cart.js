@@ -45,7 +45,7 @@ export default class CartService extends Service {
     });
     this.quantity = quantity;
     this.subtotal = subtotal.toFixed(2);
-    this.totalPrice = (totalPrice + this.shipping).toFixed(2);
+    this.totalPrice = (totalPrice + this.shipping - this.discount).toFixed(2);
   }
 
   empty() {
