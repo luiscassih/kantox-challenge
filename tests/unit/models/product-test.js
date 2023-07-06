@@ -18,11 +18,11 @@ module('Unit | Model | product', function (hooks) {
     const store = this.owner.lookup('service:store');
     const products = await store.findAll('product');
 
-    assert.equal(products.length, 3);
-    assert.equal(products.objectAt(0).name, 'Green Tea');
-    assert.equal(products.objectAt(0).price, 3.11);
-    assert.equal(products.objectAt(0).code, 'GR1');
-    assert.equal(products.objectAt(0).image, 'green_tea.png');
-    assert.equal(products.objectAt(0).quantity, 0);
+    assert.strictEqual(products.length, 3);
+    assert.strictEqual(products.objectAt(0).name, 'Green Tea');
+    assert.strictEqual(products.objectAt(0).price, 3.11);
+    assert.strictEqual(products.objectAt(0).code, 'GR1');
+    assert.strictEqual(products.objectAt(0).image, 'green_tea.png');
+    assert.strictEqual(products.objectAt(0).quantity, 0);
   });
 });

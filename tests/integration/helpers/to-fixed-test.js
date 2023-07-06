@@ -15,6 +15,5 @@ module('Integration | Helper | toFixed', function (hooks) {
 
     await render(hbs`{{to-fixed this.text}}`);
     assert.dom(this.element).hasText('');
-
   });
 });

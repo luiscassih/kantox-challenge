@@ -3,15 +3,18 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 class Promotions {
-  promotions = []
+  promotions = [];
 
   addPromotion(code, label, condition, action) {
-    this.promotions.push({code, label, condition, action});
+    this.promotions.push({ code, label, condition, action });
     return this;
   }
 
   getDiscount(product) {
-    let promotion = this.promotions.find(promotion => promotion.code === product.code && promotion.condition(product));
+    let promotion = this.promotions.find(
+      (promotion) =>
+        promotion.code === product.code && promotion.condition(product)
+    );
     if (promotion) {
       return promotion.action(product);
     }
@@ -19,7 +22,9 @@ class Promotions {
   }
 
   getLabel(product) {
-    let promotion = this.promotions.find(promotion => promotion.code === product.code);
+    let promotion = this.promotions.find(
+      (promotion) => promotion.code === product.code
+    );
     if (promotion) {
       return promotion.label;
     }
@@ -38,29 +43,32 @@ export default class CartService extends Service {
     .addPromotion(
       'GR1',
       '2 for 1',
-      product => product.quantity > 1,
-      product => {
+      (product) => product.quantity > 1,
+      (product) => {
         // green tea -> add 1 -> 1 more
         // discount half prices when adding in pairs
-        return Math.floor(product.quantity / 2) * product.price
-    })
+        return Math.floor(product.quantity / 2) * product.price;
+      }
+    )
     .addPromotion(
       'SR1',
       '3 for £13.50',
-      product => product.quantity > 2,
-      product => {
+      (product) => product.quantity > 2,
+      (product) => {
         // strawberries -> add 3 -> each drop to fixed 4.50
         // as we charge 4.50 we discount the difference
-        return (product.price - 4.50) * product.quantity;
-    })
+        return (product.price - 4.5) * product.quantity;
+      }
+    )
     .addPromotion(
       'CF1',
       'Multi-buy discount',
-      product => product.quantity > 2,
-      product => {
+      (product) => product.quantity > 2,
+      (product) => {
         // coffee -> add 3 -> each goes 2/3 of price
-        return ((product.price * product.quantity) * 1/3);
-    });
+        return (product.price * product.quantity * 1) / 3;
+      }
+    );
 
   add(product) {
     const existingProduct = this.products.find((p) => p.code === product.code);
@@ -92,7 +100,7 @@ export default class CartService extends Service {
     let discount = 0;
     this.products.forEach((product) => {
       quantity += product.quantity;
-      let price = (product.price * product.quantity);
+      let price = product.price * product.quantity;
       totalPrice += price;
       discount += this.promotions.getDiscount(product);
       subtotal += price;

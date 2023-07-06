@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'kshop-app/tests/helpers';
-import { render, click } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | product', function (hooks) {
@@ -22,7 +22,6 @@ module('Integration | Component | product', function (hooks) {
     assert.dom('.font-bold.text-xl').hasText('Green Tea');
     assert.dom('span.text-xl').hasText('£3.11');
     assert.dom('.quantity-selector').doesNotExist();
-
   });
 
   test('it renders with quantity-selector', async function (assert) {
@@ -38,6 +37,5 @@ module('Integration | Component | product', function (hooks) {
 
     assert.dom('.px-2.font-bold').exists();
     assert.dom('.px-2.font-bold').hasText('5');
-
   });
 });

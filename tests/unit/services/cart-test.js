@@ -22,9 +22,9 @@ module('Unit | Service | cart', function (hooks) {
 
     this.service.add(product);
 
-    assert.equal(this.service.products.length, 1);
-    assert.equal(this.service.quantity, 1);
-    assert.equal(this.service.totalPrice, '3.11');
+    assert.strictEqual(this.service.products.length, 1);
+    assert.strictEqual(this.service.quantity, 1);
+    assert.strictEqual(this.service.totalPrice, '3.11');
   });
 
   test('it removes a product from the cart', function (assert) {
@@ -37,9 +37,9 @@ module('Unit | Service | cart', function (hooks) {
     this.service.add(product);
     this.service.remove(product);
 
-    assert.equal(this.service.products.length, 0);
-    assert.equal(this.service.quantity, 0);
-    assert.equal(this.service.totalPrice, '0.00');
+    assert.strictEqual(this.service.products.length, 0);
+    assert.strictEqual(this.service.quantity, 0);
+    assert.strictEqual(this.service.totalPrice, '0.00');
   });
 
   test('it calculates discounts and updates total price', function (assert) {
@@ -52,8 +52,7 @@ module('Unit | Service | cart', function (hooks) {
     this.service.add(product);
     this.service.add(product);
 
-    assert.equal(this.service.discount, 3.11);
-    assert.equal(this.service.totalPrice, '3.11');
+    assert.strictEqual(this.service.discount, 3.11);
+    assert.strictEqual(this.service.totalPrice, '3.11');
   });
-
 });
